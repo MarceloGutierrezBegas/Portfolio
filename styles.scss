@@ -1,0 +1,614 @@
+/////////////////////////
+/////////CONFIG/////////
+/////////////////////////
+
+//Colors
+$primaryColor: #5c39bd;
+$secondaryColor: #5532f0;
+$accentColor: #261d57;
+$darkColor: #471d57;
+$greyColor: #777182;
+$lightColor: #eef7fa;
+
+//Font-Family
+$notoSans: "Oxygen", sans-serif;
+$fira: "Oxygen", sans-serif;
+$firaC: "Raleway", sans-serif;
+
+// Media queries
+$xxl: 1400px;
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 576px;
+
+@mixin breakpoint($point) {
+ @if $point == sm {
+  @media (min-width: 576px) {
+   @content;
+  }
+ }
+ @if $point == md {
+  @media (min-width: 768px) {
+   @content;
+  }
+ }
+ @if $point == lg {
+  @media (min-width: 992px) {
+   @content;
+  }
+ }
+ @if $point == xl {
+  @media (min-width: 1200px) {
+   @content;
+  }
+ }
+ @if $point == xxl {
+  @media (min-width: 1400px) {
+   @content;
+  }
+ }
+}
+
+@mixin clampmd-lg {
+ @media (min-width: 550px) and (max-width: 1200px) {
+  @content;
+ }
+}
+
+//GLOBAL
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body {
+ color: $greyColor;
+ font-family: $fira;
+ background-color: white;
+}
+
+.container {
+ @include breakpoint(xl) {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  height: 100vh;
+ }
+}
+
+section {
+ padding: 3rem 1.5rem;
+ width: 90vw;
+ margin: auto;
+}
+
+a {
+ text-decoration: none;
+}
+
+ul {
+ list-style: none;
+}
+
+h1 {
+ font-size: 3rem; //36px
+ font-weight: 600;
+ background: $accentColor;
+ background-clip: text;
+ -webkit-background-clip: text;
+ -moz-background-clip: text;
+ -moz-text-fill-color: transparent;
+ -webkit-text-fill-color: transparent;
+ @include breakpoint(lg) {
+  font-size: 4.5rem; //72px
+ }
+}
+
+h2 {
+ font-size: 3rem; //48px
+ font-weight: 400;
+}
+
+h3 {
+ font-size: 2.25rem; //36px
+ font-weight: 400;
+}
+
+//Subheading 1
+h4 {
+ color: $secondaryColor;
+ font-family: $firaC;
+ font-size: 1.5rem; //24px
+ font-weight: 400;
+ letter-spacing: 5%;
+ text-transform: uppercase;
+ @include breakpoint(lg) {
+  font-size: 2.25rem; //36px
+ }
+}
+
+//Subheading 2
+h5 {
+ font-family: $notoSans;
+ font-size: 1.125rem; //18px
+ font-weight: 700;
+ color: $darkColor;
+}
+
+//Body Large
+h6 {
+ font-size: 1rem; //20px
+ font-weight: 400;
+ @include breakpoint(md) {
+  font-size: 1.15rem;
+ }
+}
+
+/////////////////////////
+///////COMPONENTS///////
+/////////////////////////
+.btn {
+ background-color: transparent;
+ border: 1px solid;
+ border-color: $accentColor;
+ border-radius: 0.2rem;
+ font-size: 1.25rem;
+ letter-spacing: 0.1;
+ font-weight: 400;
+ width: 14.5rem;
+ height: 3.85rem;
+ cursor: pointer;
+ transition: all 0.3s ease-in;
+ color: $accentColor;
+
+ &:hover {
+  background: $accentColor;
+  color: white;
+ }
+}
+
+.btn--active {
+ background: $accentColor;
+ color: white;
+
+ a {
+  color: white;
+ }
+}
+
+.btn--accent {
+ background: $accentColor;
+ border: none;
+ color: #fff;
+
+ &:hover {
+  background: transparent;
+  border: 1px solid;
+  border-color: $accentColor;
+  color: $secondaryColor;
+ }
+}
+
+.btn--small {
+ width: 11.75rem;
+ height: 3rem;
+ font-size: 1.35rem; //22px
+}
+
+.btn--mini {
+ width: 7rem;
+ height: 2rem;
+ font-size: 0.9rem; //22px
+}
+
+.skills__card {
+ text-align: center;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding: 1.5rem 0;
+ gap: 1rem;
+ background-color: white;
+ border: 1.75px solid;
+ border-color: $secondaryColor;
+ border-radius: 0.2rem;
+ position: relative;
+ width: 11.35rem; //182px
+ h5 {
+  position: absolute;
+  right: 0;
+  top: -1.5rem;
+  background: $accentColor;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+ }
+ img {
+  width: 40%;
+ }
+ ul li {
+  margin-top: 5px;
+ }
+}
+
+/////////////////////////
+///////////NAVBAR///////
+/////////////////////////
+nav {
+ position: fixed;
+ z-index: 222;
+ bottom: 0;
+ width: 100vw;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 0 6rem;
+ background-color: #fff;
+ height: 3.65rem;
+ @include breakpoint(lg) {
+  top: 0;
+  justify-content: end;
+  background-color: white;
+ }
+}
+
+.nav__icon {
+ fill: $secondaryColor;
+ transition: all 0.3s ease-in;
+
+ &:hover {
+  fill: $primaryColor;
+ }
+
+ @include breakpoint(lg) {
+  display: none;
+ }
+
+ &--active {
+  fill: $primaryColor;
+ }
+}
+
+.nav__links {
+ display: none;
+ color: $secondaryColor;
+ transition: all 0.3s ease-in;
+
+ &--active {
+  color: $primaryColor;
+ }
+ &:hover {
+  color: $primaryColor;
+ }
+ @include breakpoint(lg) {
+  display: inline-block;
+ }
+}
+
+/////////////////////////
+///////////HOME/////////
+/////////////////////////
+
+#home {
+ display: flex;
+ flex-direction: column;
+ gap: 5rem;
+ margin: auto;
+ width: 100vw;
+ height: max-content;
+
+ @include breakpoint(md) {
+  padding-top: 7vh;
+ }
+ @include breakpoint(lg) {
+  padding-top: 10vh;
+ }
+ @include breakpoint(xl) {
+  height: 100vh;
+  flex-direction: row;
+  padding-top: 10vh;
+  margin: auto;
+  width: 80vw;
+  scroll-snap-align: start;
+ }
+}
+
+.home__info {
+ margin: auto;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ gap: 2rem;
+ @include breakpoint(md) {
+  width: 80%;
+ }
+
+ &--detail {
+  display: block;
+  margin-top: 3vh;
+  @include breakpoint(md) {
+   display: inline;
+   margin-top: 0;
+  }
+ }
+
+ h6 {
+  @include breakpoint(md) {
+   width: 80%;
+  }
+ }
+
+ .btn__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 2rem;
+  @include breakpoint(md) {
+   flex-direction: row;
+   margin-top: 0rem;
+   gap: 2rem;
+  }
+ }
+}
+
+.skills__wrapper {
+ margin: auto;
+ position: relative;
+ display: flex;
+ flex-direction: column;
+ gap: 3rem;
+ height: auto;
+
+ @include breakpoint(md) {
+  gap: 5vw;
+  flex-direction: row;
+ }
+
+ @include breakpoint(xl) {
+  margin-top: 3vh;
+  height: 649px;
+  width: 28rem;
+
+  .card__frontend {
+   position: absolute;
+   top: 0;
+   right: 0;
+  }
+
+  .card__design {
+   position: absolute;
+   top: 120px;
+   left: 0;
+   z-index: 1;
+  }
+
+  .card__others {
+   position: absolute;
+   top: 250px;
+   right: 0;
+  }
+ }
+
+ @include clampmd-lg {
+  width: auto;
+  display: flex;
+  gap: 5vw;
+  height: auto;
+  .card__design,
+  .card__frontend,
+  .card__others {
+   position: relative;
+   top: 0;
+  }
+ }
+}
+
+/////////////////////////
+///////////CONTATO///////
+/////////////////////////
+
+#contato {
+ height: max-content;
+ width: 100vw;
+ @include breakpoint(md) {
+  width: 90%;
+  margin: auto;
+ }
+ @include breakpoint(xl) {
+  height: 100vh;
+  scroll-snap-align: start;
+ }
+
+ #submit__message {
+  text-align: center;
+  margin-top: -50px;
+  margin-bottom: 50px;
+  color: $darkColor;
+  animation: all 4s ease forwards;
+ }
+ .contact__container {
+  display: flex;
+  flex-direction: column-reverse;
+  margin: auto;
+  justify-content: space-between;
+  margin-bottom: 5vh;
+
+  @include breakpoint(xl) {
+   flex-direction: row;
+   width: 70vw;
+   margin: auto;
+   margin-top: 1vh;
+  }
+ }
+ form {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin: auto;
+
+  button {
+   margin: auto;
+  }
+
+  @include breakpoint(md) {
+   width: 65vw;
+   margin: auto;
+  }
+
+  @include breakpoint(xl) {
+   width: 40%;
+  }
+ }
+ #name,
+ #email,
+ #message,
+ .contact__card {
+  border-radius: 4px;
+  border: 1px solid $secondaryColor;
+  padding: 0.5rem;
+  background-color: transparent;
+ }
+
+ #message {
+  height: 15vh;
+  margin-bottom: 2rem;
+  @include breakpoint(md) {
+   height: 20vh;
+  }
+ }
+
+ label {
+  color: $greyColor;
+  margin-top: 1rem;
+ }
+
+ .contact__info {
+  width: 80vw;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  margin: auto;
+  @include breakpoint(md) {
+   width: 50vw;
+  }
+  @include breakpoint(xl) {
+   width: 35%;
+  }
+ }
+
+ .contact__card {
+  padding: 2rem;
+  margin: 1.5rem 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  textarea {
+   resize: none;
+   height: 1.25rem;
+   width: 100%;
+   font-family: $fira;
+   background-color: transparent;
+  }
+ }
+
+ .contact__text {
+  color: $darkColor;
+  border: none;
+  resize: none;
+  display: block;
+  text-align: center;
+  margin: auto;
+  letter-spacing: 0.1rem;
+  height: 1.5rem;
+  width: 80%;
+ }
+ .contact__link {
+  color: $accentColor;
+  font-size: 1.3vh;
+ }
+
+ .contact__icon {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 2rem;
+  color: $primaryColor;
+ }
+
+ .tooltip {
+  position: relative;
+  display: inline-block;
+  .tooltiptext {
+   visibility: hidden;
+   width: 8rem;
+   background-color: $primaryColor;
+   color: #fff;
+   text-align: center;
+   border-radius: 6px;
+   padding: 0.25rem;
+   position: absolute;
+   z-index: 1;
+   top: 150%;
+   opacity: 0;
+   transition: opacity 0.3s;
+  }
+  &:hover .tooltiptext {
+   visibility: visible;
+   opacity: 1;
+  }
+ }
+}
+
+//////////////
+
+.portfolio__section {
+ width: 100%;
+ margin: auto;
+
+ @include breakpoint(md) {
+  width: 90%;
+ }
+ @include breakpoint(xl) {
+  scroll-snap-align: start;
+  height: 100vh;
+ }
+}
+
+.portfolio__info {
+ width: 90%;
+ padding-top: 3vh;
+
+ h6 {
+  margin-bottom: 2vh;
+ }
+
+ @include breakpoint(md) {
+  padding-top: 7vh;
+  padding-bottom: 2vh;
+ }
+}
+
+.portfolio__content {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 1.5rem;
+
+ img {
+  width: 100%;
+  box-shadow: 1px 2px 10px rgba(136, 136, 136, 0.301);
+ }
+
+ @include breakpoint(md) {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+ }
+}
+
+li a {
+ color: $accentColor;
+ text-transform: uppercase;
+ font-weight: 900;
+}
