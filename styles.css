@@ -14,8 +14,6 @@ body {
 @media (min-width: 1200px) {
   .container {
     overflow-y: scroll;
-    -ms-scroll-snap-type: y mandatory;
-        scroll-snap-type: y mandatory;
     height: 100vh;
   }
 }
@@ -299,7 +297,6 @@ nav {
     padding-top: 10vh;
     margin: auto;
     width: 80vw;
-    scroll-snap-align: start;
   }
 }
 
@@ -448,7 +445,6 @@ nav {
 @media (min-width: 1200px) {
   #contato {
     height: 100vh;
-    scroll-snap-align: start;
   }
 }
 
@@ -650,7 +646,6 @@ nav {
 
 @media (min-width: 1200px) {
   .portfolio__section {
-    scroll-snap-align: start;
     height: 100vh;
   }
 }
