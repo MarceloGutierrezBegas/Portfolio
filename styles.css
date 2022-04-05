@@ -407,7 +407,7 @@ nav {
   .skills__wrapper .card__others {
     position: absolute;
     top: 250px;
-    right: 0;
+    right: -20px;
   }
 }
 
