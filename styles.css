@@ -646,7 +646,7 @@ nav {
 
 @media (min-width: 1200px) {
   .portfolio__section {
-    height: 100vh;
+    height: max-content;
   }
 }
 
